@@ -1,8 +1,8 @@
 import { db } from "@/lib/db";
 
-export const getUrlById = async (id: string) => {
+export const getUrlByCode = async (code: string) => {
   try {
-    const data = await db.url.findFirst({ where: { id } });
+    const data = await db.url.findFirst({ where: { code } });
     return data;
   } catch {
     return null;

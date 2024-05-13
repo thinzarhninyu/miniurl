@@ -29,6 +29,7 @@ export const getUrlsByUserId = async (id: string) => {
           select: {
             id: true,
             url: true,
+            code: true,
           },
         },
       },

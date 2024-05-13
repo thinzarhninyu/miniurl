@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation";
-import { getUrlById } from "@/data/url";
+import { getUrlByCode } from "@/data/url";
 
 const RedrectPage: React.FC<{ params: { id: string } }> = async ({
   params,
 }) => {
-  const data = await getUrlById(params.id);
+  const data = await getUrlByCode(params.id);
   if (!data) {
     redirect("/");
   }

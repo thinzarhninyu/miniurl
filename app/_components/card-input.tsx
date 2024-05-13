@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { startTransition, useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
 import { CreateUrl } from "@/actions/create-url";
 import CopyButton from "./copy-button";
 
@@ -28,7 +27,7 @@ const CardInput = () => {
           setError(data.error ?? "");
           setSuccess(data.success ?? "");
           if (data.success) {
-            setShortUrl(`${process.env.NEXT_PUBLIC_URL}/${data.id}`);
+            setShortUrl(`${process.env.NEXT_PUBLIC_URL}/${data.code}`);
           }
         })
         .catch((error) => {
@@ -43,11 +42,13 @@ const CardInput = () => {
       <CardContent>
         <Label>URL</Label>
         <Input value={url} onChange={(e) => setUrl(e.target.value)}></Input>
-        <Button onClick={onGenerate}>Generate</Button>
+        <Button className="mt-5" onClick={onGenerate}>
+          Generate
+        </Button>
       </CardContent>
       <CardFooter>
-        <Input value={shortUrl} disabled />
-        <CopyButton url={`${process.env.NEXT_PUBLIC_URL}/${shortUrl}`} />
+        <Input value={shortUrl} placeholder="Mini URL" disabled />
+        <CopyButton url={shortUrl} />
       </CardFooter>
     </Card>
   );
